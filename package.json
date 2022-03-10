@@ -4,5 +4,24 @@
     "express": "^4.17.3",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "trabalhomedicinatabelas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliver-zyn/tabelas-medicina.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oliver-zyn/tabelas-medicina/issues"
+  },
+  "homepage": "https://github.com/oliver-zyn/tabelas-medicina#readme",
+  "description": ""
 }
