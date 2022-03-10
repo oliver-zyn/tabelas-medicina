@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Novo Produto</h1>
+        <input type="text" placeholder="Nome" id="name">
+        <input type="number" placeholder="Preço" id="price">
+        <input type="text" placeholder="Descrição" id="description">
+        <button onclick="newProduct()">Enviar</button>
+    </div>
+
+    <div>
+        <h1>Ver produtos</h1>
+        <button onclick="allProducts()">Ver produtos</button>
+        <p id="lista"></p>
+    </div>
+
+    <script>
+        function newProduct() {
+            let nome = document.querySelector('#name').value
+            let preco = document.querySelector('#price').value
+            let descricao = document.querySelector('#description').value
+
+            preco = Number(preco)
+
+            let objectProduct = {
+                nome, preco, descricao
+            }
+
+            fetch('http://localhost:5000/new', {
+                method: 'Post',
+                headers: new Headers({'content-type': 'application/json'}),
+                body: JSON.stringify(objectProduct)
+            }).then(res => {
+                res.text().then(msg => {
+                    console.log(msg);
+                })
+            })
+
+            nome = ''
+            preco = ''
+            descricao = ''
+        }
+
+        function allProducts() {
+            fetch("http://localhost:5000/all").then((res) => {
+                return res.json();
+            }).then((json) => {
+            let dados = JSON.parse(json);
+            let lista = document.querySelector("#lista");
+            dados.forEach((element) => {
+              lista.innerHTML += `<div id=${element.id}>
+                                        <hr>
+                                        <p><strong>Nome:</strong> ${element.nome}</p>
+                                        <p><strong>Idade:</strong> ${element.idade}</p>
+                                        <p><strong>Uf:</strong> ${element.uf}</p>
+                                    </div>`;
+            });
+          });
+      }
+    </script>
+</body>
+</html>
