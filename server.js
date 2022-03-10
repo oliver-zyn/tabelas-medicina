@@ -1,6 +1,5 @@
 const express = require('express');
 const database = require('./db')
-const Produto = require('./models/produto');
 const path = require('path')
 const app = express()
 const PORT = 5000

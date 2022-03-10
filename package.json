@@ -6,7 +6,7 @@
     "sequelize": "^6.17.0"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon index.js"
   },
   "name": "tabelas-medicina",
   "version": "1.0.0",
