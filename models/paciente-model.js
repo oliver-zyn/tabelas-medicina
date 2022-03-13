@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const database = require('../db');
 
-const Paciente = database.define('paciente', {
+const Paciente = database.define('tb_paciente', {
     id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -10,11 +10,17 @@ const Paciente = database.define('paciente', {
     },
     exame_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {model: 'tb_exame', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     convenio_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {model: 'tb_convenio', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     nome: Sequelize.STRING,
     endereço: Sequelize.STRING,
@@ -28,6 +34,6 @@ const Paciente = database.define('paciente', {
     cep: Sequelize.STRING(12),
     rg: Sequelize.STRING(11),
     data_nascimento: Sequelize.DATE 
-})
+}, {freezeTableName: true})
 
 module.exports = Paciente;

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const database = require('../db');
 
-const TipoExame = database.define('tipoExame', {
+const TipoExame = database.define('tb_tipoExame', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -14,6 +14,6 @@ const TipoExame = database.define('tipoExame', {
     },
     cd_tipo_exame: Sequelize.INTEGER,
     tipo_resultado: Sequelize.STRING
-})
+}, {freezeTableName: true})
 
 module.exports = TipoExame;
