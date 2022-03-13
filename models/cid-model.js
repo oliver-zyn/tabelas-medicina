@@ -16,6 +16,6 @@ const Cid = database.define('tb_cid', {
         type: Sequelize.STRING(255),
         allowNull: false
     }
-});
+}, {freezeTableName: true});
 
 module.exports = Cid;

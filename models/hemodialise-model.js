@@ -11,10 +11,16 @@ const Hemodialise = database.define('tb_hemodialise', {
     esquema_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {model: 'tb_esquema', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     usuario_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {model: 'tb_usuario', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     data_sessao: {
         type: Sequelize.DATE,
@@ -44,6 +50,6 @@ const Hemodialise = database.define('tb_hemodialise', {
         type: Sequelize.TEXT,
         allowNull: false
     }
-});
+}, {freezeTableName: true});
 
 module.exports = Hemodialise;

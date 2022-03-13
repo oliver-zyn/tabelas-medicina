@@ -12,6 +12,6 @@ const Funcao = database.define('tb_funcao', {
         type: Sequelize.STRING(100),
         allowNull: false,
     }
-});
+}, {freezeTableName: true});
 
 module.exports = Funcao;

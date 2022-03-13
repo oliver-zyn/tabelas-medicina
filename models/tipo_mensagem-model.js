@@ -16,6 +16,6 @@ const TipoMensagem = database.define('tb_tipo_mensagem', {
         type: Sequelize.STRING(255),
         allowNull: false
     }
-});
+}, {freezeTableName: true});
 
 module.exports = TipoMensagem;
