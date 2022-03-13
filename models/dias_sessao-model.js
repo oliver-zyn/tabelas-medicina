@@ -12,6 +12,6 @@ const DiasSessao = database.define('tb_dias_sessao', {
         type: Sequelize.STRING(255),
         allowNull: false,
     }
-});
+}, {freezeTableName: true});
 
 module.exports = DiasSessao;

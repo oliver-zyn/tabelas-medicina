@@ -11,14 +11,23 @@ const Esquema = database.define('tb_esquema', {
     tipo_capilar_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {model: 'tb_tipo_capilar', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     paciente_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {model: 'tb_paciente', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     dias_sessao_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {model: 'tb_dias_sessao', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     data_inicio: {
         type: Sequelize.DATE,
@@ -32,6 +41,6 @@ const Esquema = database.define('tb_esquema', {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-});
+}, {freezeTableName: true});
 
 module.exports = Esquema;

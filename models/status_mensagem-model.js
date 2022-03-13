@@ -16,6 +16,6 @@ const StatusMensagem = database.define('tb_status_mensagem', {
         type: Sequelize.BOOLEAN,
         allowNull: false
     }
-});
+}, {freezeTableName: true});
 
 module.exports = StatusMensagem;

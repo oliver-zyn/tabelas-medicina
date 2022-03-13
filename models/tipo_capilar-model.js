@@ -12,6 +12,6 @@ const TipoCapilar = database.define('tb_tipo_capilar', {
         type: Sequelize.STRING(255),
         allowNull: false,
     }
-});
+}, {freezeTableName: true});
 
 module.exports = TipoCapilar;

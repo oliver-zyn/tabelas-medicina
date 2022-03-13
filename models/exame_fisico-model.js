@@ -11,10 +11,16 @@ const ExameFisico = database.define('tb_exame_fisico', {
     usuario_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {model: 'tb_usuario', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     paciente_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {model: 'tb_paciente', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     fundo_olhos: {
         type: Sequelize.INTEGER,
@@ -84,6 +90,6 @@ const ExameFisico = database.define('tb_exame_fisico', {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-});
+}, {freezeTableName: true});
 
 module.exports = ExameFisico;
