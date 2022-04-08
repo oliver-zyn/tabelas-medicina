@@ -25,24 +25,48 @@ const TipoMensagem = require('./models/tipo_mensagem-model');
 const Usuario = require('./models/usuario-model');
 const UsuarioHasFuncao = require('./models/usuario_has_funcao-model');
 
-(async () => {
+const express = require('express')
+const app = express()
+const path = require('path')
+
+app.use('/', express.static(path.join(__dirname, 'public')))
+
+app.use(express.json())
+
+app.post('/register', async (req, res) => {
+    let {nome, email, login, senha, ativo} = req.body
 
     try {
         const resultado = await database.sync();
     } catch (error) {
         console.log(error);
+        res.status(500).send('Ocorreu um erro inesperado')
     }
 
     try {
 
-        const result = await Usuario.create({
-            nome: 'Clebinho', login: 'clebinho123', senha: '1241242', ativo: true, email: 'clebinho@gmail.com'
+        let emailExiste = await Usuario.findOne({ 
+            where: { 
+                email: email
+            } 
         })
 
-        console.log(result);
+        if (emailExiste) {
+            return res.status(400).send("Email já existe");
+        }
+
+        const result = await Usuario.create({
+            nome, login, senha, ativo, email
+        })
+
+        res.status(200).send('Usuário registrado com sucesso!')
 
     } catch (error) {
         console.log(error);
+        res.status(500).send('Ocorreu um erro inesperado')
     }
+})
 
-})()
+app.listen(3000, (req, res) => {
+    console.log('Rodando na porta 3000')
+})

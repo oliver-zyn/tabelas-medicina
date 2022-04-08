@@ -11,7 +11,7 @@ const EvolucaoClinica = database.define('tb_evolucao_clinica', {
     paciente_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: 'tb_evolucao_clinica', key: 'id'},
+        references: {model: 'tb_paciente', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
     },
