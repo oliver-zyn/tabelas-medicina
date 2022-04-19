@@ -1,9 +1,6 @@
-const database = require('./db');
 const AcessoVascular = require('./models/acesso_vascular-model');
 const AvaliacaoAntropometrica = require('./models/avaliacao_antropometrica-model');
-const BateriaExame = require('./models/bateria_exame-model');
 const Cid = require('./models/cid-model');
-const Convenio = require('./models/convenio-model');
 const DiasSessao = require('./models/dias_sessao-model');
 const Esquema = require('./models/esquema-model');
 const EvolucaoClinica = require('./models/evolucao_clinica-model');
@@ -21,9 +18,12 @@ const PedidoExame = require('./models/pedido_exame-model');
 const StatusMensagem = require('./models/status_mensagem-model');
 const TipoCapilar = require('./models/tipo_capilar-model');
 const TipoExame = require('./models/tipo_exame-model');
-const TipoMensagem = require('./models/tipo_mensagem-model');
-const Usuario = require('./models/usuario-model');
 const UsuarioHasFuncao = require('./models/usuario_has_funcao-model');
+
+const userRouter = require('./routes/user')
+const convenioRouter = require('./routes/convenio')
+const tipoMensagemRouter = require('./routes/tipoMensagem')
+const bateriaExameRouter = require('./routes/bateriaExame')
 
 const express = require('express')
 const app = express()
@@ -33,39 +33,10 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use(express.json())
 
-app.post('/register', async (req, res) => {
-    let {nome, email, login, senha, ativo} = req.body
-
-    try {
-        const resultado = await database.sync();
-    } catch (error) {
-        console.log(error);
-        res.status(500).send('Ocorreu um erro inesperado')
-    }
-
-    try {
-
-        let emailExiste = await Usuario.findOne({ 
-            where: { 
-                email: email
-            } 
-        })
-
-        if (emailExiste) {
-            return res.status(400).send("Email já existe");
-        }
-
-        const result = await Usuario.create({
-            nome, login, senha, ativo, email
-        })
-
-        res.status(200).send('Usuário registrado com sucesso!')
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).send('Ocorreu um erro inesperado')
-    }
-})
+app.use('/user', userRouter)
+app.use('/convenio', convenioRouter)
+app.use('/tipoMensagem', tipoMensagemRouter)
+app.use('/bateriaExame', bateriaExameRouter)
 
 app.listen(3000, (req, res) => {
     console.log('Rodando na porta 3000')

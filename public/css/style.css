@@ -14,8 +14,10 @@ body {
   }
 
 .login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 360px;
-  padding: 8% 0 0;
   margin: auto;
 }
 .form {
