@@ -5,8 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>| Convênio</title>
+
+    <style>
+      /* Estilo provisório */
+
+      body {
+        background: linear-gradient(90deg, var(--green), #018787e0);
+        font-family: "Roboto", sans-serif;
+      }
+
+      .login-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 360px;
+        margin: auto;
+      }
+
+      h1 {
+        margin-bottom: 15px;
+      }
+    </style>
 </head>
 <body>
     <div class="login-page">
@@ -14,7 +36,7 @@
             <h1>Convênio:</h1>
           <form class="login-form">
             <input type="text" id="nomeConvenio" placeholder="Digite o nome do convênio"/>
-            <button onclick="sendConvenio()" type="button">Enviar</button>
+            <button class="button" onclick="sendConvenio()" type="button">Enviar</button>
           </form>
         </div>
       </div>

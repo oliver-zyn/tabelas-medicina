@@ -5,30 +5,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>| Registrar-se</title>
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>| Usuários</title>
 </head>
 <body>
-    <div class="login-page">
+
+    <header>
+      <h1>Tabela de Usuários</h2>
+    </header>
+
+    <main>
+      <div class="containerTable">
+          <table id="tableUser">
+            <tr>
+              <th>Id</th>
+              <th>Nome</th>
+              <th>Login</th>
+              <th>Senha</th>
+              <th>Email</th>
+              <th>Ativo</th>
+              <th>Editar</th>
+            </tr>
+          </table>
+      </div>
+
+      <div class="actions">
+        <aside>
+          <button class="button" onclick="openModal('modalInclude')">Incluir</button>
+        </aside>
+      </div>
+    </main>
+
+    <div class="modal" id="modalInclude">
+      <div class="form">
+          <div class="modalHeader">
+              <h1>Incluir Usuário</h1>
+              <span onclick="closeModal('modalInclude')">&#10005;</span>
+          </div>
+        <form class="login-form">
+          <input type="text" id="nameInclude" placeholder="Digite seu nome"/>
+          <input type="email" id="emailInclude" placeholder="Digite seu email"/>
+          <input type="text" id="loginInclude" placeholder="Digite seu login"/>
+          <input type="password" id="passwordConfirmInclude" placeholder="Confirme sua senha"/>
+          <input type="password" id="passwordInclude" placeholder="Digite sua senha"/>
+          <div class="checkbox-container">
+              <label class="cl-checkbox">
+                  <input checked="true" type="checkbox" id="chkActiveInclude">
+                  <span></span>
+              </label>
+              <span>Ativo</span>
+          </div>
+          <button class="button" onclick="includeUser()" type="button">Enviar</button>
+        </form>
+      </div>
+  </div>
+
+    <div class="modal" id="modalUpdate">
         <div class="form">
-            <h1>Registrar-se:</h1>
+            <div class="modalHeader">
+                <h1>Editar Usuário</h1>
+                <span onclick="closeModal('modalUpdate')">&#10005;</span>
+            </div>
           <form class="login-form">
-            <input type="text" id="name" placeholder="Digite seu nome"/>
-            <input type="email" id="email" placeholder="Digite seu email"/>
-            <input type="text" id="login" placeholder="Digite seu login"/>
-            <input type="password" id="senha" placeholder="Digite sua senha"/>
-            <input type="password" id="senhaConfirm" placeholder="Confirme sua senha"/>
+            <input type="text" id="nameUpdate" placeholder="Digite seu nome"/>
+            <input type="email" id="emailUpdate" placeholder="Digite seu email"/>
+            <input type="text" id="loginUpdate" placeholder="Digite seu login"/>
+            <input type="password" id="passwordUpdate" placeholder="Digite sua senha"/>
             <div class="checkbox-container">
                 <label class="cl-checkbox">
-                    <input checked="true" type="checkbox" id="chkAtivo">
+                    <input checked="true" type="checkbox" id="chkActiveUpdate">
                     <span></span>
                 </label>
                 <span>Ativo</span>
             </div>
-            <button onclick="sendUser()" type="button">Registrar</button>
+            <button class="button" onclick="updateUser()" type="button">Enviar</button>
           </form>
         </div>
-      </div>
-    <script src="js/script.js"></script>
+    </div>
+
+    <script src="js/table.js"></script>
+    
 </body>
 </html>

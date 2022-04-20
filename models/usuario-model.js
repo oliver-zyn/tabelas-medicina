@@ -18,11 +18,14 @@ const Usuario = database.define('tb_usuario', {
         allowNull: false
     },
     senha: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
     },
     ativo: Sequelize.BOOLEAN,
-    email: Sequelize.STRING(100)
+    email: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    }
 }, {freezeTableName: true})
 
 module.exports = Usuario;

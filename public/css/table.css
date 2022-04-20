@@ -1,0 +1,97 @@
+main {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px auto;
+  gap: 30px;
+}
+
+.actions {
+  border: 1px solid rgba(0, 0, 0, 0.185);
+  width: 300px;
+  padding: 10px;
+}
+
+.containerTable {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  max-width: 1000px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.185);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 10px;
+  border-right: 1px solid rgba(0, 0, 0, 0.185);
+  font-size: 0.9rem;
+}
+
+tbody:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: var(--green);
+  color: white;
+}
+
+.btnEdit {
+  padding: 10px;
+  background: var(--green);
+  color: #fafafa;
+  border: none;
+  box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.281);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnEdit:active {
+  box-shadow: none;
+}
+
+.modal {
+  display: none;
+  opacity: 0;
+  animation: modal-anim 0.2s forwards ease-in-out;
+}
+
+.modal > div {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.modalHeader > span {
+  background: var(--green);
+  color: #fafafa;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+@keyframes modal-anim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

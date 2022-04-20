@@ -1,5 +1,6 @@
 const Usuario = require('../models/usuario-model');
 const database = require('../db');
+const { Op } = require("sequelize");
 
 let userController = {
     register: async (req, res) => {
@@ -15,7 +16,7 @@ let userController = {
             })
 
             if (emailExiste) {
-                return res.status(400).send("Email já existe");
+                return res.status(400).send("O email já existe");
             }
 
             const result = await Usuario.create({
@@ -30,9 +31,25 @@ let userController = {
         }
     },
 
+    update: async (req, res) => {
+
+        let {id, nome, email, login, senha, ativo} = req.body
+
+        try {
+            const result = Usuario.update(
+                {nome, email, login, senha, ativo}, { where: { id } }
+            )
+
+            res.status(200).send('Usuário atualizado com sucesso!')
+            
+        } catch (error) {
+            res.status(500).send('Ocorreu um erro na alteração do usuário')
+        }
+    },
+
     all: async (req, res) => {
         try {
-            let usuarios = await Usuario.findAll()
+            let usuarios = await Usuario.findAll({attributes: ['id', 'nome', 'login', 'senha', 'ativo', 'email'], order: ['id']})
 
             res.status(200).send(usuarios)
         } catch (error) {
